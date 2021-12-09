@@ -1,20 +1,8 @@
 <template>
   <v-row justify="center" align="center">
-    <v-col cols="12" sm="8" md="6">
-      <v-row>
-        <v-text-field
-          label="Search"
-          placeholder="Search in Ars Technica"
-        ></v-text-field>
-        <v-btn elevation="2">Search</v-btn>
-      </v-row>
-      <div v-if="results">
-        <result-item
-          v-for="item in results.data"
-          :key="item.url"
-          :item="item"
-        />
-      </div>
+    <v-col cols="12" sm="8">
+      <search v-model="query" @search="search(query)" />
+      <results :results="results" />
     </v-col>
   </v-row>
 </template>
@@ -24,6 +12,7 @@ export default {
   data() {
     return {
       results: null,
+      query: "",
     };
   },
   methods: {
@@ -32,7 +21,7 @@ export default {
         query
       )}&days=${encodeURIComponent(days)}`;
     },
-    async search(query, days, resultsCallback) {
+    async search(query, days = 30) {
       const searchURL = this.getSearchURL(query, days);
 
       try {
@@ -41,9 +30,6 @@ export default {
         console.log("THERE WAS AN ERROR!!!!", error);
       }
     },
-  },
-  mounted() {
-    this.search("microsoft@?", 30);
   },
 };
 </script>
