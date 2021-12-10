@@ -6,7 +6,7 @@
           <v-col cols="3">
             <result-item-thumbnail
               :url="item.url"
-              :thumbnail="item.thumb_url_medium"
+              :thumbnail="item.image_url"
             />
           </v-col>
           <v-col class="pa-4">
@@ -47,14 +47,17 @@ export default {
     },
     publishedDate() {
       const { pub_date: publishedDate } = this.item;
-      const currentMonth = this.$moment().month();
-      const publishedMonth = this.$moment(publishedDate).month();
 
-      if (currentMonth !== publishedMonth) {
-        return this.$moment(publishedDate).format("MMM D, YYYY");
+      const formattedPublishedDate = this.$moment(publishedDate);
+      const daysDifference = this.$moment().diff(
+        formattedPublishedDate,
+        "days"
+      );
+      if (daysDifference > 7) {
+        return formattedPublishedDate.format("MMM D, YYYY");
       }
 
-      return this.$moment(publishedDate).fromNow();
+      return formattedPublishedDate.fromNow();
     },
   },
 };

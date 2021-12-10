@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" align="center" class="mt-12">
     <v-col cols="8">
-      <search v-model="query" @search="search(query)" />
+      <search v-model="query" @search="startSearch" />
       <results :results="results" />
     </v-col>
   </v-row>
@@ -30,6 +30,9 @@ export default {
       } catch (error) {
         console.log("THERE WAS AN ERROR!!!!", error);
       }
+    },
+    startSearch() {
+      this.search(this.query);
     },
   },
   mounted() {
