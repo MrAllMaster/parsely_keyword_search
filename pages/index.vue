@@ -1,6 +1,6 @@
 <template>
-  <v-row justify="center" align="center">
-    <v-col cols="12" sm="8">
+  <v-row justify="center" align="center" class="mt-12">
+    <v-col cols="8">
       <search v-model="query" @search="search(query)" />
       <results :results="results" />
     </v-col>
@@ -32,5 +32,13 @@ export default {
       }
     },
   },
+  mounted() {
+    this.search("apple");
+  },
 };
 </script>
+<style lang="scss">
+html {
+  overflow-y: auto;
+}
+</style>

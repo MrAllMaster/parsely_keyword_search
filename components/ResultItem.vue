@@ -1,28 +1,29 @@
 <template>
-  <v-row>
-    <v-card>
-      <v-card-title>
-        <a :href="item.url" target="blank">{{ item.title }}</a>
-      </v-card-title>
-      <result-item-breadcrumbs :breadcrumbs="itemBreadcrumbs" />
-      <v-row>
-        <v-col cols="2">
-          <a :href="item.url" target="blank">
-            <v-img :src="item.thumb_url_medium" :href="item.url"></v-img>
-          </a>
-        </v-col>
-        <v-col>
-          <p>
-            <span>{{ itemPublishedDate }}</span>
-            <span>...</span>
-            {{ itemDescription }}
-          </p>
-          <p>
-            Labeled <span>{{ item.section }}</span>
-          </p>
-        </v-col>
-      </v-row>
-    </v-card>
+  <v-row class="mb-4">
+    <v-col cols="12">
+      <v-card class="elevation-0 rounded-lg pa-0" width="100%">
+        <v-row no-gutters>
+          <v-col cols="3">
+            <result-item-thumbnail
+              :url="item.url"
+              :thumbnail="item.thumb_url_medium"
+            />
+          </v-col>
+          <v-col class="pa-4">
+            <result-item-title :url="item.url" :title="item.title" />
+            <result-item-breadcrumbs :breadcrumbs="breadcrumbs" />
+            <result-item-information
+              :publishedDate="publishedDate"
+              :section="item.section"
+            />
+            <result-item-description
+              :description="description"
+              :url="item.url"
+            />
+          </v-col>
+        </v-row>
+      </v-card>
+    </v-col>
   </v-row>
 </template>
 
@@ -35,14 +36,16 @@ export default {
     },
   },
   computed: {
-    itemDescription() {
+    description() {
       const metadata = JSON.parse(this.item.metadata);
       return metadata.lower_deck;
     },
-    itemBreadcrumbs() {
-      return this.item.url.split("/").slice(3, -1);
+    breadcrumbs() {
+      const breadcrumbs = this.item.url.split("/").slice(3, -1);
+      breadcrumbs.unshift("Ars Technica");
+      return breadcrumbs;
     },
-    itemPublishedDate() {
+    publishedDate() {
       const { pub_date: publishedDate } = this.item;
       const currentMonth = this.$moment().month();
       const publishedMonth = this.$moment(publishedDate).month();
@@ -56,5 +59,3 @@ export default {
   },
 };
 </script>
-
-<style></style>

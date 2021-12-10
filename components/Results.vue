@@ -1,8 +1,12 @@
 <template>
-  <div v-if="hasResults">
-    <result-item v-for="item in results.data" :key="item.url" :item="item" />
-  </div>
-  <no-results v-else />
+  <v-row>
+    <v-col v-if="hasResults">
+      <result-item v-for="item in results.data" :key="item.url" :item="item" />
+    </v-col>
+    <v-col v-else>
+      <no-results />
+    </v-col>
+  </v-row>
 </template>
 
 <script>
