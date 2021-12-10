@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" class="mt-12">
-    <v-col cols="8">
+    <v-col cols="12" sm="10" md="8">
       <search v-model="query" @search="startSearch" />
       <loading v-if="loading" :loading="loading" />
       <results v-else :results="results" />

@@ -3,13 +3,13 @@
     <v-col cols="12">
       <v-card class="elevation-0 rounded-lg pa-0" width="100%">
         <v-row no-gutters>
-          <v-col cols="3">
+          <v-col cols="12" sm="4" md="3">
             <result-item-thumbnail
               :url="item.url"
               :thumbnail="item.image_url"
             />
           </v-col>
-          <v-col class="pa-4">
+          <v-col cols="12" sm="8" md="9" class="pa-4">
             <result-item-title :url="item.url" :title="item.title" />
             <result-item-breadcrumbs :breadcrumbs="breadcrumbs" />
             <result-item-information

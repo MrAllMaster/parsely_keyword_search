@@ -1,7 +1,11 @@
 <template>
   <a :href="url" target="blank">
     <v-img
-      class="rounded-lg rounded-r-0"
+      class="rounded-lg"
+      :class="[
+        { 'rounded-b-0': $vuetify.breakpoint.xsOnly },
+        { 'rounded-r-0': $vuetify.breakpoint.smAndUp },
+      ]"
       :src="thumbnail"
       max-height="100%"
       height="100%"

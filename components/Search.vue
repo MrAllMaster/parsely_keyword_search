@@ -56,4 +56,11 @@ export default {
 .v-text-field {
   border-radius: 8px 0 0 8px !important;
 }
+@media only screen and (max-width: 384px) {
+  .v-btn {
+    border-radius: 8px !important;
+    margin-top: 24px !important;
+    height: 52px !important;
+  }
+}
 </style>
