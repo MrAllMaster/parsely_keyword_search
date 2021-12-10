@@ -22,7 +22,7 @@ export default {
 
 <style lang="scss" scoped>
 p {
-  opacity: 80%;
+  opacity: 0.8;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
