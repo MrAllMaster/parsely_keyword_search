@@ -1,5 +1,5 @@
 <template>
-  <h1>Oops. There were no results found!</h1>
+  <h1 class="text-center">Oops. There were no results found!</h1>
 </template>
 
 <script>

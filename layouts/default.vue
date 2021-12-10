@@ -1,7 +1,7 @@
 <template>
   <v-app class="primary">
     <v-main>
-      <v-container>
+      <v-container fill-height class="align-start">
         <Nuxt />
       </v-container>
     </v-main>
