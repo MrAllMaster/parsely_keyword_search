@@ -1,6 +1,9 @@
 {
   "name": "parsely_keyword_search",
   "version": "1.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "private": true,
   "scripts": {
     "dev": "nuxt",
@@ -16,6 +19,7 @@
   },
   "devDependencies": {
     "@nuxtjs/moment": "^1.6.1",
-    "@nuxtjs/vuetify": "^1.12.1"
+    "@nuxtjs/vuetify": "^1.12.1",
+    "sass-loader": "^10.1.1"
   }
 }
