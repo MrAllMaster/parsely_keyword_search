@@ -1,14 +1,19 @@
 <template>
   <v-row>
     <v-card>
-      <v-card-title>{{ item.title }} </v-card-title>
+      <v-card-title>
+        <a :href="item.url" target="blank">{{ item.title }}</a>
+      </v-card-title>
+      <result-item-breadcrumbs :breadcrumbs="itemBreadcrumbs" />
       <v-row>
         <v-col cols="2">
-          <v-img :src="item.thumb_url_medium"></v-img>
+          <a :href="item.url" target="blank">
+            <v-img :src="item.thumb_url_medium" :href="item.url"></v-img>
+          </a>
         </v-col>
         <v-col>
           <p>
-            <span>{{ item.pub_date }}</span>
+            <span>{{ itemPublishedDate }}</span>
             <span>...</span>
             {{ itemDescription }}
           </p>
@@ -30,9 +35,23 @@ export default {
     },
   },
   computed: {
-    itemDescription(item) {
+    itemDescription() {
       const metadata = JSON.parse(this.item.metadata);
       return metadata.lower_deck;
+    },
+    itemBreadcrumbs() {
+      return this.item.url.split("/").slice(3, -1);
+    },
+    itemPublishedDate() {
+      const { pub_date: publishedDate } = this.item;
+      const currentMonth = this.$moment().month();
+      const publishedMonth = this.$moment(publishedDate).month();
+
+      if (currentMonth !== publishedMonth) {
+        return this.$moment(publishedDate).format("MMM D, YYYY");
+      }
+
+      return this.$moment(publishedDate).fromNow();
     },
   },
 };

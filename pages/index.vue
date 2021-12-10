@@ -17,11 +17,12 @@ export default {
   },
   methods: {
     getSearchURL(query, days) {
-      return `https://api.parsely.com/v2/search?apikey=arstechnica.com&q=${encodeURIComponent(
-        query
-      )}&days=${encodeURIComponent(days)}`;
+      const parsedQuery = encodeURIComponent(query);
+      const parsedDays = encodeURIComponent(days);
+      return `https://api.parsely.com/v2/search?apikey=arstechnica.com&q=${parsedQuery}&days=${parsedDays}`;
     },
     async search(query, days = 30) {
+      if (!query.length > 0) return;
       const searchURL = this.getSearchURL(query, days);
 
       try {
