@@ -2,7 +2,7 @@
   <div class="text-body-1">
     <span>...</span>
     {{ description }}
-    <a :href="url" class="primary--text">Learn More</a>
+    <a :href="url" target="blank" class="primary--text">Learn More</a>
   </div>
 </template>
 
